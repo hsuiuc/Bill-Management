@@ -61,10 +61,8 @@ public class RecordPanel extends WorkingPanel {
         this.setLayout(new BorderLayout());
         this.add(panelInput, BorderLayout.NORTH);
         this.add(panelSubmit, BorderLayout.CENTER);
-    }
 
-    public static void main(String[] args) {
-        GUIUtil.showPanel(RecordPanel.instance);
+        addListener();
     }
 
     public Category getSelectedCategory() {
@@ -98,5 +96,9 @@ public class RecordPanel extends WorkingPanel {
     public void addListener() {
         RecordListener recordListener = new RecordListener();
         bSubmit.addActionListener(recordListener);
+    }
+
+    public static void main(String[] args) {
+        GUIUtil.showPanel(RecordPanel.instance);
     }
 }

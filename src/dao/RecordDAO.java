@@ -39,7 +39,7 @@ public class RecordDAO {
         String sql = "insert into record values(null, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             //set params
             preparedStatement.setInt(1, record.getSpend());
             preparedStatement.setInt(2, record.getCid());
