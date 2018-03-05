@@ -1,7 +1,10 @@
 package gui.panel;
 
+import entity.Category;
+import gui.listener.RecordListener;
 import gui.model.CategoryComboBoxModel;
 import org.jdesktop.swingx.JXDatePicker;
+import service.CategoryService;
 import util.ColorUtil;
 import util.GUIUtil;
 
@@ -9,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 
-public class RecordPanel extends JPanel {
+public class RecordPanel extends WorkingPanel {
     static {
         GUIUtil.useLNF();
     }
@@ -24,7 +27,7 @@ public class RecordPanel extends JPanel {
 
     public JTextField textFieldSpend = new JTextField("0");
     public CategoryComboBoxModel cbModel = new CategoryComboBoxModel();
-    public JComboBox<String> cbCategory = new JComboBox<>(cbModel);
+    public JComboBox<Category> cbCategory = new JComboBox<>(cbModel);
     public JTextField textFieldComment = new JTextField();
     public JXDatePicker datePicker = new JXDatePicker(new Date());
     JButton bSubmit = new JButton("add a record");
@@ -62,5 +65,38 @@ public class RecordPanel extends JPanel {
 
     public static void main(String[] args) {
         GUIUtil.showPanel(RecordPanel.instance);
+    }
+
+    public Category getSelectedCategory() {
+        return (Category) cbCategory.getSelectedItem();
+    }
+
+    /**
+     * update data on the panel
+     */
+    @Override
+    public void updateData() {
+        CategoryService categoryService = new CategoryService();
+        cbModel.cs = categoryService.list();
+        cbCategory.updateUI();
+        resetInput();
+        textFieldSpend.grabFocus();
+    }
+
+    private void resetInput() {
+        textFieldSpend.setText("0");
+        textFieldComment.setText("");
+        if (cbModel.cs.size() != 0)
+            cbCategory.setSelectedIndex(0);
+        datePicker.setDate(new Date());
+    }
+
+    /**
+     * add listener to components on the panel
+     */
+    @Override
+    public void addListener() {
+        RecordListener recordListener = new RecordListener();
+        bSubmit.addActionListener(recordListener);
     }
 }

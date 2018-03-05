@@ -1,21 +1,23 @@
 package gui.model;
 
+import entity.Category;
+import service.CategoryService;
+
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryComboBoxModel implements ComboBoxModel<String> {
+public class CategoryComboBoxModel implements ComboBoxModel<Category> {
 
-    public List<String> cs = new ArrayList<>();
-    String c;
+    private CategoryService categoryService = new CategoryService();
+
+    public List<Category> cs = categoryService.list();
+    private Category c;
 
     public CategoryComboBoxModel() {
-        cs.add("meals");
-        cs.add("transportation");
-        cs.add("living");
-        cs.add("telephone");
-        c = cs.get(0);
+        if (!cs.isEmpty())
+            c = cs.get(0);
     }
 
     /**
@@ -28,7 +30,7 @@ public class CategoryComboBoxModel implements ComboBoxModel<String> {
      */
     @Override
     public void setSelectedItem(Object anItem) {
-        c = (String) anItem;
+        c = (Category) anItem;
     }
 
     /**
@@ -38,7 +40,7 @@ public class CategoryComboBoxModel implements ComboBoxModel<String> {
      */
     @Override
     public Object getSelectedItem() {
-        return c;
+        return cs.isEmpty() ? null : c;
     }
 
     /**
@@ -58,7 +60,7 @@ public class CategoryComboBoxModel implements ComboBoxModel<String> {
      * @return the value at <code>index</code>
      */
     @Override
-    public String getElementAt(int index) {
+    public Category getElementAt(int index) {
         return cs.get(index);
     }
 

@@ -19,6 +19,13 @@ public class Record {
         this.date = date;
     }
 
+    public Record(int spend, int cid, String comment, Date date) {
+        this.spend = spend;
+        this.cid = cid;
+        this.comment = comment;
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }
