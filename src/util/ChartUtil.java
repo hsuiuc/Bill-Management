@@ -1,8 +1,7 @@
 package util;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
+import java.awt.*;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,21 +10,12 @@ import javax.swing.JPanel;
 
 import com.objectplanet.chart.BarChart;
 import com.objectplanet.chart.Chart;
+import entity.Record;
 
 public class ChartUtil {
 
-    public static int max(double[] sampleValues) {
-        int max = 0;
-        for (double v : sampleValues) {
-            if (v > max)
-                max = (int) v;
-        }
-        return max;
-
-    }
-
-    private static String[] sampleLabels() {
-        String[] sampleLabels = new String[30];
+    private static String[] sampleLabels(List<Record> recordList) {
+        String[] sampleLabels = new String[recordList.size()];
 
         for (int i = 0; i < sampleLabels.length; i++) {
             if (0 == i % 5)
@@ -34,11 +24,30 @@ public class ChartUtil {
         return sampleLabels;
     }
 
-    public static Image getImage(int width, int height) {
+    private static double[] sampleValues(List<Record> recordList) {
+
+        double[] sampleValues = new double[recordList.size()];
+        for (int i = 0; i < sampleValues.length; i++) {
+            sampleValues[i] = recordList.get(i).getSpend();
+        }
+        return sampleValues;
+    }
+
+    private static int max(double[] sampleValues) {
+        int max = 0;
+        for (double d : sampleValues) {
+            if (d > max) {
+                max = (int) d;
+            }
+        }
+        return max;
+    }
+
+    public static Image getImage(List<Record> recordList, int width, int height) {
         // 模拟样本数据
-        double[] sampleValues = sampleValues();
+        double[] sampleValues = sampleValues(recordList);
         // 下方显示的文字
-        String[] sampleLabels = sampleLabels();
+        String[] sampleLabels = sampleLabels(recordList);
         // 样本中的最大值
         int max = max(sampleValues);
 
@@ -86,20 +95,10 @@ public class ChartUtil {
         return im;
     }
 
-    private static double[] sampleValues() {
-
-        double[] result = new double[30];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = (int) (Math.random() * 300);
-        }
-        return result;
-
-    }
-
     public static void main(String[] args) {
         JPanel p = new JPanel();
         JLabel l = new JLabel();
-        Image img = ChartUtil.getImage(800, 300);
+        Image img = ChartUtil.getImage(null, 800, 300);
         Icon icon = new ImageIcon(img);
         l.setIcon(icon);
         p.add(l);

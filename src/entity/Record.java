@@ -11,6 +11,10 @@ public class Record {
     private String comment;
     private Date date;
 
+    public Record() {
+
+    }
+
     public Record(int id, int spend, int cid, String comment, Date date) {
         this.id = id;
         this.spend = spend;
@@ -64,5 +68,16 @@ public class Record {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "id=" + id +
+                ", spend=" + spend +
+                ", cid=" + cid +
+                ", comment='" + comment + '\'' +
+                ", date=" + date +
+                '}';
     }
 }
