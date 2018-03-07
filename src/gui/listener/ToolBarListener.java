@@ -10,7 +10,7 @@ public class ToolBarListener implements ActionListener {
     /**
      * Invoked when an action occurs.
      *
-     * @param e
+     * @param e event happened
      */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -17,7 +17,7 @@ public class MainPanel extends JPanel {
     public static MainPanel instance = new MainPanel();
 
     //public components
-    public JToolBar toolBar = new JToolBar();
+    private JToolBar toolBar = new JToolBar();
     public JButton bSpend = new JButton();
     public JButton bRecord = new JButton();
     public JButton bCategory = new JButton();

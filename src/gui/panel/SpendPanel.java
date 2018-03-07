@@ -16,21 +16,21 @@ public class SpendPanel extends WorkingPanel {
 
     public static SpendPanel instance = new SpendPanel();
 
-    public JLabel lMonthSpend = new JLabel("Spend This Month");
-    public JLabel lTodaySpend = new JLabel("Spend Today");
-    public JLabel lAvgSpendPerDay = new JLabel("Average Spend Per Day");
-    public JLabel lMonthLeft = new JLabel("Money Left This Month");
-    public JLabel lDayAvgAvailable = new JLabel("Average Money Available Per Day");
-    public JLabel lMonthLeftDay = new JLabel("Days Left This Month");
+    private JLabel lMonthSpend = new JLabel("Spend This Month");
+    private JLabel lTodaySpend = new JLabel("Spend Today");
+    private JLabel lAvgSpendPerDay = new JLabel("Average Spend Per Day");
+    private JLabel lMonthLeft = new JLabel("Money Left This Month");
+    private JLabel lDayAvgAvailable = new JLabel("Average Money Available Per Day");
+    private JLabel lMonthLeftDay = new JLabel("Days Left This Month");
 
-    public JLabel vMonthSpend = new JLabel("$2300");
-    public JLabel vTodaySpend = new JLabel("$25");
-    public JLabel vAvgSpendPerDay = new JLabel("$120");
-    public JLabel vMonthAvailable = new JLabel("$2084");
-    public JLabel vDayAvgAvailable = new JLabel("$389");
-    public JLabel vMonthLeftDay = new JLabel("15 Days");
+    private JLabel vMonthSpend = new JLabel("$2300");
+    private JLabel vTodaySpend = new JLabel("$25");
+    private JLabel vAvgSpendPerDay = new JLabel("$120");
+    private JLabel vMonthAvailable = new JLabel("$2084");
+    private JLabel vDayAvgAvailable = new JLabel("$389");
+    private JLabel vMonthLeftDay = new JLabel("15 Days");
 
-    public CircleProgressBar bar;
+    private CircleProgressBar bar;
 
     private SpendPanel() {
         this.setLayout(new BorderLayout());
